@@ -1,17 +1,16 @@
 # File objects
 import os
 
-print(os.getcwd())
-os.chdir('e:\Lavid\Python learning\\files')
+BASE_DIR = os.getcwd()
 
 # Not a good version
-f = open('test.txt', 'r')
+f = open(BASE_DIR + '/files/test.txt', 'r')
 print(f.name)
 f.close()
 
 
 # Best version
-with open('test.txt', 'r') as f:
+with open(BASE_DIR + '/files/test.txt', 'r') as f:
     # Different ways to iterate through lines
     # Gets the firs 100 characters of each line
     # sizeToRead = 100
@@ -23,15 +22,15 @@ with open('test.txt', 'r') as f:
     # f.seek(0)
     # f.tell() check in which position you're in
 
-    with open('testCopy.txt', 'w') as cf:
+    with open(BASE_DIR + '/files/testCopy.txt', 'w') as cf:
         for line in f:
             print(line)
             cf.write(line)
 
 
 # Working with images
-with open('img.jpg', 'rb') as rf:
-    with open('imgCopy.jpg', 'wb') as wf:
+with open(BASE_DIR + '/files/img.jpg', 'rb') as rf:
+    with open(BASE_DIR + '/files/imgCopy.jpg', 'wb') as wf:
         chunkSize = 4096
         rfChunk = rf.read(chunkSize)
         while len(rfChunk):

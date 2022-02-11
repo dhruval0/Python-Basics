@@ -5,7 +5,7 @@ from test_sqlite import Person
 connection = sqlite3.connect('person.db')
 
 # creates a new database that stays in RAM, and is created at each new execution
-#connection = sqlite3.connect(':memory:')
+connection = sqlite3.connect(':memory:')
 
 # cursor is used to execute sql commands
 cursor = connection.cursor()
@@ -13,11 +13,11 @@ cursor = connection.cursor()
 # SQL commands that use multiple lines are wrapped in triple quotes, also called docstrings
 # SQLite data types, NULL, INTEGER, BLOB, TEXT, REAL
 
-#cursor.execute("""CREATE TABLE people (
-#                fName text,
-#                lName text,
-#                age integer
-#                )""")
+# cursor.execute("""CREATE TABLE people (
+#             fName text,
+#             lName text,
+#             age integer
+#             )""")
 
 def insert_emp(person):
     with connection:
@@ -37,14 +37,14 @@ person_2 = Person('Quan', 'Chi', 80)
 
 
 # put values as a tuple into the table
-#cursor.execute("INSERT INTO people VALUES (?, ?, ?)", (person_1.name, person_1.lastName, person_1.age))
-#connection.commit()
+cursor.execute("INSERT INTO people VALUES (?, ?, ?)", (person_1.name, person_1.lastName, person_1.age))
+connection.commit()
 
 
 # put values as a dictionary into the table
 # despite being longer, it's much more readable than passing it as a tuple
-#cursor.execute("INSERT INTO people VALUES (:fName, :lName, :age)", {'fName': person_2.name, 'lName': person_2.lastName, 'age': person_2.age})
-#connection.commit()
+cursor.execute("INSERT INTO people VALUES (:fName, :lName, :age)", {'fName': person_2.name, 'lName': person_2.lastName, 'age': person_2.age})
+connection.commit()
 
 #cursor.execute("Delete FROM people WHERE lName='khan'")
 
